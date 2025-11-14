@@ -1,0 +1,33 @@
+name: python-demo-script
+
+on:
+  workflow_dispatch:
+
+env:
+  APP_ENV: dev
+  PY_VERSION: "3.9"
+
+jobs:
+  python-daily-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+       python-version: ${{ env.PY_VERSION }}
+
+    - name: Install uv
+      run: | 
+        pip install uv
+    
+    - name: Install dependencies with uv
+      run: uv sync
+
+    - name: Run script
+      run: uv run python main.py
+     
+
+    
