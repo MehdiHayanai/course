@@ -16,7 +16,7 @@ jobs:
         run: echo global user name = ${{ env.repo-user }}
 
       - name: echo local variable
-        run: echo ${{ my-var }}
+        run: echo ${{ env.my-var }}
         env:
           my-var: test123
 
