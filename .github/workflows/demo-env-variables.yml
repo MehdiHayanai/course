@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  - python-version : '3.9'
-  - repo-user: 'Chakor'
+  python-version : '3.9'
+  repo-user: 'Chakor'
 
 jobs:
   env-var-project:
@@ -16,12 +16,12 @@ jobs:
         run: echo global user name = ${{ env.repo-user }}
 
       - name: echo local variable
-        run: echo ${{ my-var }}
         env:
-          - my-var: test123
+          my-var: test123
+        run: echo ${{ env.my-var }}
 
       - name: set variable
         run: echo "my-new-var=coco" >> $GITHUB_ENV
       
       - name: output new variable
-        run: echo ${{ env.my-new-var }} !!
+        run: echo  $my-new-var
