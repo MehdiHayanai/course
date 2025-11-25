@@ -13,7 +13,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: demo upload
+          name: demo-upload
           path: demo.txt
           retention-days: 2
 
@@ -22,6 +22,6 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: demo upload
+          name: demo-upload
       - run: | 
           cat demo.txt 
