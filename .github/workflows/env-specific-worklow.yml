@@ -1,0 +1,19 @@
+name: dev-workflow
+
+on:
+  workflow_dispatch:
+
+env:
+  env-name: dev
+
+jobs:
+  env-reader:
+    runs-on: ubuntu-latest
+    environment:
+      name: dev
+      url: https://github.com
+  
+    steps:
+    - name: Echo env name
+      run: |
+        echo "Env name ${{ env.env-name }} my secret = $secrets.SECRET_KEY"
