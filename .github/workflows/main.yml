@@ -1,0 +1,27 @@
+name : demo-env-variable
+
+on:
+  workflow_dispatch:
+
+env:
+  python-version: '3.9'
+  repo-user: 'Chakor'
+
+jobs:
+  env-var-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: echo user name
+        run: echo global user name = ${{ env.repo-user }}
+
+      - name: echo local variable
+        run: echo ${{ env.my-var }}
+        env:
+          my-var: test123
+
+      - name: set variable
+        run: echo "my-new-var=coco" >> $GITHUB_ENV
+      
+      - name: output new variable
+        run: echo ${{ env.my-new-var }} !!
