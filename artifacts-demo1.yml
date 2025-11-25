@@ -1,0 +1,27 @@
+name: artifact-demo
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  artifact-creation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create file
+        run: echo "This is the content of the demo file" > demo.txt
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: demo upload
+          path: demo.txt
+          retention-days: 2
+
+  use-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: demo upload
+      - run: | 
+          cat demo.txt 
