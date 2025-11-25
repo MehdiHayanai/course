@@ -1,0 +1,30 @@
+name: variables-sharing-deprecated
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: set env using GITHUB_ENV
+        run: echo "DEMO_VARIABLE=DEMO" >> $GITHUB_ENV 
+        
+      - name: Echo env using
+        run: echo "${{ env.DEMO_VARIABLE }}" 
+      
+      
+      - name: set variable using set-output
+        id: step-id-1
+        run: | 
+          echo "::set-output name=DEMO_VARIABLE::DEMO_VARIABLE2"
+          echo "::set-output name=USER_NAME::OUIOUI"
+          echo "::set-output name=CURRENT_TIME::$(date +'%Y-%m-%d-%H-%M')"
+
+      - name: output variables
+        run: |
+          echo Variable Name ${{ env.DEMO_VARIABLE }}
+          echo Did it change ${{ steps.step-id-1.outputs.DEMO_VARIABLE }}
+          echo User Name ${{ steps.step-id-1.outputs.USER_NAME }}
+          echo at ${{ steps.step-id-1.outputs.CURRENT_TIME }}
