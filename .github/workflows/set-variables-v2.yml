@@ -31,3 +31,14 @@ jobs:
 
       - name: referencing none existing variable
         run: echo ${{ steps.step-id-1.outputs.not_existing}}
+
+    outputs:
+      current-date : ${{ steps.step-id-1.outputs.CURRENT_TIME}}
+      user-name : ${{ steps.step-id-1.outputs.USER_NAME}}
+
+  second-job:
+    runs-on: ubuntu-latest
+    needs: first-job
+    steps:
+      - name: use other job content
+        run: echo Hello ${{ needs.first-job.outputs.user-name}} the current time is ${{needs.first-job.outputs.current-date}}
