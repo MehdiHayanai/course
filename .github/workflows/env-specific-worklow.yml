@@ -16,4 +16,4 @@ jobs:
     steps:
     - name: Echo env name
       run: |
-        echo "Env name ${{ env.env-name }} my secret = $secrets.SECRET_KEY"
+        echo "Env name ${{ env.env-name }} my secret = ${{ secrets.SECRET_KEY }}"
