@@ -1,0 +1,23 @@
+name: default-variables
+
+on:
+    workflow_dispatch
+
+jobs:
+  env-variables-demo:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Echo env variables
+        run: |
+          echo "$GITHUB_ACTIONS"
+          echo "$GITHUB_ENV"
+          echo "$GITHUB_API_URL"
+          echo "$GITHUB_JOB"
+          echo "$GITHUB_STEP_SUMMARY"
+          echo "$GITHUB_WORKLOW"
+          echo "$GITHUB_REPOSITORY_OWNER"
+          echo "$GITHUB_RUN_NUMBER"
+          echo "$GITHUB_SERVER_URL"
+          echo "$RUNNER_NAME"
