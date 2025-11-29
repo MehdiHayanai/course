@@ -4,8 +4,11 @@ param Location string = resourceGroup().location
 param env string = 'dev'
 
 var stgacc_name = '${StorageName}${uniqueString(resourceGroup().id)}'
-var acr_name = 'basic-storage-${env}-${uniqueString(resourceGroup().id)}'
+var acr_name = 'basicstorage${env}${uniqueString(resourceGroup().id)}'
 var bsns_name = 'service-bus-${env}-${uniqueString(resourceGroup().id)}'
+var app_name = 'webapp-${env}-${uniqueString(resourceGroup().id)}'
+var asp_name = 'ASP-${app_name}'
+
 
 resource storageaccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: stgacc_name
@@ -39,3 +42,31 @@ resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2021-06-01-preview
 }
 
 
+resource hostingPlan 'Microsoft.Web/serverfarms@2024-11-01' = {
+  name: asp_name
+  location: Location
+  kind: 'linux'
+  tags: null
+
+  sku: {
+    tier: 'Basic'
+    name: 'B1'
+    size: 'B1'
+    family: 'B1'
+  }
+  dependsOn: []
+}
+
+
+resource WebApp 'Microsoft.Web/sites@2022-03-01' = {
+  name: app_name
+  location: Location
+  tags: null
+  properties: {
+   serverFarmId: hostingPlan.id
+   clientAffinityEnabled: false
+   httpsOnly: true
+  }
+  dependsOn: [
+  ]
+}
