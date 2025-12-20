@@ -4,8 +4,8 @@ on:
     workflow_dispatch:
 
 env:
-    AZURE_CONTAINER_REGISTRY: dog-app
-    CONTAINER_APP_NAME: dog-app
+    AZURE_CONTAINER_REGISTRY: basicstoragedevlqpocs4srhlb4
+    CONTAINER_APP_NAME: basicstoragedevlqpocs4srhlb4
     RESOURCE_GROUP: packt-dev-resource-rg
 
 jobs:
