@@ -17,7 +17,7 @@ create a service principal and configure access
 
 
 ```bash
-az ad sp create-for-rbac --name github-devops-app --role contributor --scopes /subscriptions/.../resourceGroups/packt-dev-resource-rg --sdk-auth
+az ad sp create-for-rbac --name github-devops-app --role contributor --scopes /subscriptions/<SubscriptionID>/resourceGroups/packt-dev-resource-rg --sdk-auth
 ```
 
 Azure CLI responded:
