@@ -24,7 +24,7 @@ def get_fun_image():
 
 
 # Add a button to fetch a new image
-if st.button("✨ Show me a new image ✨"):
+if st.button("✨ Show me a new image ✨ Yess"):
     # Show balloons for extra fun
     st.balloons()
 
