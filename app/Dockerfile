@@ -6,7 +6,7 @@ WORKDIR /app
 
 ENV UV_COMPILE_BYTECODE=1
 
-COPY pyproject.toml uv.lock ./
+COPY app/pyproject.toml app/uv.lock ./
 
 # Install dependencies
 # --frozen: Sync exactly what is in uv.lock (no updates)
