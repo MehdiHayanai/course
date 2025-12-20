@@ -31,7 +31,7 @@ jobs:
                 template: ./infra/templates/deploy_envt.bicep
                 parameters: |
                   "./infra/envts/dev/deploy_envt.parameters.json"
-                scope: resourceGroup
+                scope: resourcegroup
                 failOnStdErr: false
 
 

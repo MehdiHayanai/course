@@ -19,7 +19,7 @@ def get_fun_image():
         )
         data = response.json()
         return data["message"]
-    except:
+    except Exception as _:
         return None
 
 
