@@ -1,7 +1,9 @@
 [project]
-name = "course"
+name = "app"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.9"
-dependencies = []
+dependencies = [
+    "streamlit>=1.50.0",
+]
