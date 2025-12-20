@@ -1,0 +1,39 @@
+name: deploy-infra
+
+on:
+    workflow_dispatch: 
+
+
+env:
+    StorageName: devtest
+    resourceGroup : packt-dev-resource-rg
+
+jobs:
+    infra-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+              name: checkout project
+
+            # Azure login
+            - name: Azure Login
+              uses: Azure/login@v1
+              with:
+                creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+            # Deploy Bicep template
+            # first move to ARM
+            - name: Deploy Azure Resource Manager (ARM) Template
+              uses: azure/arm-deploy@v1
+              with:
+                subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+                resourceGroupName: ${{ env.resourceGroup }}
+                template: ./infra/templates/deploy_envt.bicep
+                parameters: |
+                  "./infra/envts/dev/deploy_envt.parameters.json"
+                scope: resourceGroup
+                failOnStdErr: false
+
+
+
+               
