@@ -24,6 +24,14 @@ Azure CLI responded:
 
 > **Option `--sdk-auth` has been deprecated and will be removed in a future release.**
 
+```bash
+az ad sp create-for-rbac \
+  --name github-devops-app \
+  --role contributor \
+  --scopes /subscriptions/<sub-id>/resourceGroups/packt-dev-resource-rg \
+  --output json
+```
+
 ### ✔ Why?
 
 `--sdk-auth` generates a JSON file for Azure SDK authentication (useful for CI/CD).
