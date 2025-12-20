@@ -14,7 +14,7 @@ COPY app/pyproject.toml app/uv.lock ./
 # --no-install-project: Don't try to install the current directory as a package yet
 RUN uv sync --frozen --no-dev --no-install-project
 
-COPY main.py .
+COPY app/main.py .
 
 ENV PATH="/app/.venv/bin:$PATH"
 
